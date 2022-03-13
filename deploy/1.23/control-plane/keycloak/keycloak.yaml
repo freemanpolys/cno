@@ -15,6 +15,11 @@ spec:
   podDisruptionBudget:
     enabled: True
   keycloakDeploymentSpec:
+    resource: 
+      limits:
+        cpu: 600m
+      request:
+        cpu: 1.500m
     experimental:
       args:
         - "-Djboss.as.management.blocking.timeout=600"
