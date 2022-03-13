@@ -3686,7 +3686,6 @@ rules:
       - events
       - configmaps
       - secrets
-      - ingresses
     verbs:
       - list
       - get
@@ -3862,7 +3861,6 @@ rules:
   - events
   - configmaps
   - secrets
-  - ingresses
   verbs:
   - list
   - get
