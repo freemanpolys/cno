@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: keycloak-db-secret
-  namespace: keycloak
+  namespace: cno-system
   labels:
     app: sso
 data: # all values Base64
@@ -13,12 +13,13 @@ data: # all values Base64
   POSTGRES_USERNAME:  YWRtaW4K
 type: Opaque
 
+
 ---
 
 apiVersion: keycloak.org/v1alpha1
 kind: Keycloak
 metadata:
-  name: example-keycloak
+  name: keycloak
   labels:
     app: sso
 spec:
