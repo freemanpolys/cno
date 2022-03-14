@@ -1,7 +1,7 @@
 apiVersion: mysql.oracle.com/v2alpha1
 kind: InnoDBCluster
 metadata:
-  name: cno-api
+  name: cno-api-mysql
 spec:
   secretName: mypwds
   instances: 1
