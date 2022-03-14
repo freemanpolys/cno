@@ -1,34 +1,19 @@
-
 apiVersion: mysql.oracle.com/v2alpha1
 kind: InnoDBCluster
 metadata:
   name: cno-api
 spec:
-  secretName: cno-api-db-secret
-  imageRepository: $MYSQL_IMAGE
-  instances: 3
+  secretName: mypwds
+  instances: 1
   router:
     instances: 1
 ---
 
 apiVersion: v1
-kind: Service
+kind: Secret
 metadata:
-  name: cno-api-mysql-master-external
-spec:
-  ports:
-  - name: mysql
-    port: 3306
-    protocol: TCP
-    targetPort: 3306
-  - name: sidecar-http
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app.kubernetes.io/managed-by: mysql.presslabs.org
-    app.kubernetes.io/name: mysql
-    mysql.presslabs.org/cluster: cno-api
-    role: master
-  sessionAffinity: None
-  type: ClusterIP
+  name: mypwds
+stringData:
+  rootUser: root
+  rootHost: '%'
+  rootPassword: MySQL202!
