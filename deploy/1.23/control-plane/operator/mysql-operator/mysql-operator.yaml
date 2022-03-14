@@ -370,7 +370,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: zalando.org/v1
-kind: ClusterKopfPeering
+kind: KopfPeering
 metadata:
   name: mysql-operator
 ---
