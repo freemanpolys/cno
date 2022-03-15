@@ -16,6 +16,8 @@ spec:
     enabled: True
   keycloakDeploymentSpec:
     experimental:
+      args:
+        - "-Djboss.as.management.blocking.timeout=600"
       volumes:
         items:
         - name: cno-realm
