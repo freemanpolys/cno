@@ -18,6 +18,7 @@ spec:
     experimental:
       args:
         - "-Djboss.as.management.blocking.timeout=600"
+        - "-Djava.net.preferIPv4Stack=true"
       volumes:
         items:
         - name: cno-realm
