@@ -1,7 +1,7 @@
-#spec:
-#  template:
-#    spec:
-#      securityContext:
-#        fsGroup: 2000
-#        runAsNonRoot: true
-#        runAsUser: 1000
+spec:
+  template:
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsNonRoot: true
+        runAsUser: 1001
