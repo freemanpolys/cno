@@ -15,3 +15,9 @@ spec:
   # User needs to provision the external database
   externalDatabase:
     enabled: True
+  keycloakDeploymentSpec:
+    resources:
+      limits:
+        cpu: 600m
+      requests:
+        cpu: 1.500m
