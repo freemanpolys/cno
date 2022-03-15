@@ -18,9 +18,10 @@ spec:
     experimental:
       volumes:
         items:
-        - configMap:
-            mountPath: /cno
-            name: cno-realm
+        - name: cno-realm
+          mountPath: /cno
+          configMaps:
+            - cno-realm
       env:
         - name: KEYCLOAK_IMPORT
           value: /cno/cno-realm.json
