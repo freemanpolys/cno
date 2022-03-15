@@ -19,6 +19,9 @@ spec:
       args:
         - "-Djboss.as.management.blocking.timeout=6000"
         - "-Djava.net.preferIPv4Stack=true"
+      env:
+        - name: PROXY_ADDRESS_FORWARDING
+          value: "false"
       volumes:
         items:
         - name: cno-realm
