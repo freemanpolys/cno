@@ -17,7 +17,7 @@ spec:
   keycloakDeploymentSpec:
     experimental:
       args:
-        - "-Djboss.as.management.blocking.timeout=600"
+        - "-Djboss.as.management.blocking.timeout=6000"
         - "-Djava.net.preferIPv4Stack=true"
       volumes:
         items:
