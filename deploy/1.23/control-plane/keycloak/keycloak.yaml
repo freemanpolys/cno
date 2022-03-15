@@ -16,8 +16,10 @@ spec:
   externalDatabase:
     enabled: True
   keycloakDeploymentSpec:
-    resources:
-      limits:
-        cpu: 600m
-      requests:
-        cpu: 1.500m
+    properties:
+      resources:
+        properties:
+          limits:
+            cpu: "500m"
+          requests:
+            cpu: "1.500m"
