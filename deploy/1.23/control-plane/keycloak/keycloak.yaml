@@ -1,7 +1,7 @@
 apiVersion: keycloak.org/v1alpha1
 kind: Keycloak
 metadata:
-  name: example-keycloak
+  name: keycloak
   labels:
     app: sso
 spec:
@@ -20,6 +20,6 @@ spec:
       resources:
         properties:
           limits:
-            cpu: "500m"
+            cpu: "1500m"
           requests:
-            cpu: "1.500m"
+            cpu: "500m"
