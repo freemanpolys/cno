@@ -3,17 +3,17 @@ kind: InnoDBCluster
 metadata:
   name: cno-api-mysql
 spec:
-  secretName: cno-api-db-secret
+  secretName: mypwds
   instances: 1
   router:
     instances: 1
 ---
 
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: mypwds
-#stringData:
-#  rootUser: root
-#  rootHost: '%'
-#  rootPassword: MySQL202!
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mypwds
+stringData:
+  rootUser: root
+  rootHost: '%'
+  rootPassword: MySQL202!
