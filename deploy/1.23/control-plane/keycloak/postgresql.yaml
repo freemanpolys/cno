@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: keycloak
   template:
     metadata:
       labels:
-        app: postgres
+        app: keycloak
     spec:
       securityContext:
         fsGroup: 1001
@@ -74,14 +74,14 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            - name: REPMGR_PARTNER_NODES
-              value: postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local
-            - name: REPMGR_PRIMARY_HOST
-              value: "postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
-            - name: REPMGR_NODE_NAME
-              value: "$(MY_POD_NAME)"
-            - name: REPMGR_NODE_NETWORK_NAME
-              value: "$(MY_POD_NAME).keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
+        #    - name: REPMGR_PARTNER_NODES
+        #      value: postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local
+        #    - name: REPMGR_PRIMARY_HOST
+        #      value: "postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
+        #    - name: REPMGR_NODE_NAME
+        #      value: "$(MY_POD_NAME)"
+        #    - name: REPMGR_NODE_NETWORK_NAME
+        #      value: "$(MY_POD_NAME).keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
             - name: REPMGR_LOG_LEVEL
               value: "NOTICE"
             - name: REPMGR_CONNECT_TIMEOUT
