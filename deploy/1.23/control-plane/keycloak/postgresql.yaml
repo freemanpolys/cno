@@ -4,7 +4,7 @@ kind: StatefulSet
 metadata:
   name: postgres-sts
 spec:
-  serviceName: keycloak-postgresql
+  #serviceName: keycloak-postgresql
   replicas: 1
   selector:
     matchLabels:
