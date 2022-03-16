@@ -7,15 +7,20 @@ metadata:
     app: sso
 spec:
   instances: 1
+  extensions:
+    - https://github.com/aerogear/keycloak-metrics-spi/releases/download/1.0.4/keycloak-metrics-spi-1.0.4.jar
   externalAccess:
-    enabled: false
+    enabled: True
     tlsTermination: passthrough
   podDisruptionBudget:
     enabled: True
+  profile: RHSSO
   externalDatabase:
     enabled: True
   keycloakDeploymentSpec:
     experimental:
+      args:
+        - "-Djboss.as.management.blocking.timeout=600"
       env:
         - name: PROXY_ADDRESS_FORWARDING
           value: "false"
