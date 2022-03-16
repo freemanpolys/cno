@@ -10,7 +10,7 @@ spec:
   extensions:
     - https://github.com/aerogear/keycloak-metrics-spi/releases/download/1.0.4/keycloak-metrics-spi-1.0.4.jar
   externalAccess:
-    enabled: True
+    enabled: False
     tlsTermination: passthrough
   podDisruptionBudget:
     enabled: True
@@ -24,6 +24,22 @@ spec:
       env:
         - name: PROXY_ADDRESS_FORWARDING
           value: "false"
+        - name: DB_ADDR
+          value: postgres-headless-svc.cno-system.svc.cluster.local
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_DATABASE
+          value: postgres
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: POSTGRES_USERNAME
+              name: keycloak-db-secret
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: POSTGRES_PASSWORD
+              name: keycloak-db-secret
       volumes:
         items:
         - name: cno-realm
@@ -33,6 +49,10 @@ spec:
       env:
         - name: KEYCLOAK_IMPORT
           value: /cno/cno-realm.json
+
+
+
+
 
 
 
