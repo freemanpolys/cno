@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-headless-svc
+  name: keycloak-postgresql
 spec:
   type: ClusterIP
   ports:
@@ -18,7 +18,7 @@ kind: StatefulSet
 metadata:
   name: postgres-sts
 spec:
-  serviceName: postgres-headless-svc
+  serviceName: keycloak-postgresql
   replicas: 1
   selector:
     matchLabels:
