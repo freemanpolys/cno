@@ -21,22 +21,6 @@ spec:
       env:
         - name: PROXY_ADDRESS_FORWARDING
           value: "false"
-        - name: DB_ADDR
-          value: keycloak-postgresql.cno-system
-        - name: DB_PORT
-          value: "5432"
-        - name: DB_DATABASE
-          value: postgres
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              key: POSTGRES_USERNAME
-              name: keycloak-db-secret
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: POSTGRES_PASSWORD
-              name: keycloak-db-secret
       volumes:
         items:
         - name: cno-realm
