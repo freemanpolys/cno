@@ -19,7 +19,7 @@ kind: StatefulSet
 metadata:
   name: postgres-sts
 spec:
-  serviceName: postgres-headless-svc
+  serviceName: keycloak-postgresql
   replicas: 1
   selector:
     matchLabels:
