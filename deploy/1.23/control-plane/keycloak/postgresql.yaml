@@ -1,25 +1,10 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-svc
-spec:
-  ports:
-  - name: postgresql
-    port: 5432
-    targetPort: postgresql
-    protocol: TCP
-  selector:
-    app: postgres
-
-
----
 
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres-sts
 spec:
-  serviceName: postgres-svc
+  serviceName: keycloak-postgresql
   replicas: 1
   selector:
     matchLabels:
@@ -90,13 +75,13 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: REPMGR_PARTNER_NODES
-              value: postgres-sts-0.postgres-svc.$(REPMGR_NAMESPACE).svc.cluster.local
+              value: postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local
             - name: REPMGR_PRIMARY_HOST
-              value: "postgres-sts-0.postgres-svc.$(REPMGR_NAMESPACE).svc.cluster.local"
+              value: "postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
             - name: REPMGR_NODE_NAME
               value: "$(MY_POD_NAME)"
             - name: REPMGR_NODE_NETWORK_NAME
-              value: "$(MY_POD_NAME).postgres-svc.$(REPMGR_NAMESPACE).svc.cluster.local"
+              value: "$(MY_POD_NAME).keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
             - name: REPMGR_LOG_LEVEL
               value: "NOTICE"
             - name: REPMGR_CONNECT_TIMEOUT
