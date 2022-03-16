@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: keycloak-postgresql
 spec:
-  type: ClusterIP
   ports:
   - name: postgresql
     port: 5432
@@ -11,7 +10,6 @@ spec:
     protocol: TCP 
   selector:
     app: postgres
-
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -19,7 +17,7 @@ metadata:
   name: postgres-sts
 spec:
   serviceName: keycloak-postgresql
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: postgres
@@ -89,7 +87,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: REPMGR_PARTNER_NODES
-              value: postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local,postgres-sts-1.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local,postgres-sts-2.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local
+              value: postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local
             - name: REPMGR_PRIMARY_HOST
               value: "postgres-sts-0.keycloak-postgresql.$(REPMGR_NAMESPACE).svc.cluster.local"
             - name: REPMGR_NODE_NAME
