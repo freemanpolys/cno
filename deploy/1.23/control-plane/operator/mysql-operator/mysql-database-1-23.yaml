@@ -1,0 +1,158 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: mysql-database
+  name: mysql-sa
+  namespace: default
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mysql-database
+  name: mysql-service
+  namespace: cno-system
+spec:
+  ports:
+  - name: mysql
+    port: 3306
+    protocol: TCP
+    targetPort: mysql
+
+---
+
+apiVersion: v1
+kind: Secret
+data:
+  mysql-password: VnNhN1dCbThoaQ==
+  mysql-root-password: UjhxTWZWTzU2UA==
+  labels:
+      app: mysql-database
+  name: cno-api-db-secret
+  namespace: cno-system
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: mysql-database
+  name: mysql-database
+  namespace: cno-system
+spec:
+  replicas: 1
+  serviceName: mysql-service
+    spec:
+      containers:
+      - env:
+        - name: BITNAMI_DEBUG
+          value: "false"
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mysql-root-password
+              name: cno-api-db-secret
+        - name: MYSQL_DATABASE
+          value: my_database
+        image: docker.io/bitnami/mysql:8.0.28-debian-10-r23
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -ec
+            - |
+              password_aux="${MYSQL_ROOT_PASSWORD:-}"
+              if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+                  password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+              fi
+              mysqladmin status -uroot -p"${password_aux}"
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: mysql
+        ports:
+        - containerPort: 3306
+          name: mysql
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -ec
+            - |
+              password_aux="${MYSQL_ROOT_PASSWORD:-}"
+              if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+                  password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+              fi
+              mysqladmin status -uroot -p"${password_aux}"
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        securityContext:
+          runAsUser: 1001
+        startupProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -ec
+            - |
+              password_aux="${MYSQL_ROOT_PASSWORD:-}"
+              if [[ -f "${MYSQL_ROOT_PASSWORD_FILE:-}" ]]; then
+                  password_aux=$(cat "$MYSQL_ROOT_PASSWORD_FILE")
+              fi
+              mysqladmin status -uroot -p"${password_aux}"
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /bitnami/mysql
+          name: data
+        - mountPath: /opt/bitnami/mysql/conf/my.cnf
+          name: config
+          subPath: my.cnf
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1001
+      serviceAccount: my-release-mysql
+      serviceAccountName: my-release-mysql
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: my-release-mysql
+        name: config
+  volumeClaimTemplates:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: primary
+        app.kubernetes.io/instance: my-release
+        app.kubernetes.io/name: mysql
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 8Gi
+      volumeMode: Filesystem
+    status:
+      phase: Pending
