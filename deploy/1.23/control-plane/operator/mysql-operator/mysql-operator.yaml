@@ -378,13 +378,6 @@ roleRef:
 #  name: mysql-operator
 #---
 
----
-apiVersion: zalando.org/v1
-kind: KopfPeering
-metadata:
-  name: mysql-operator
-  namespace: cno-system
----
 apiVersion: v1
 kind: Namespace
 metadata:
