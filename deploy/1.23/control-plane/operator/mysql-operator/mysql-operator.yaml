@@ -291,7 +291,9 @@ spec:
               type: object
               x-kubernetes-preserve-unknown-fields: true
 
+
 ---
+
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -370,7 +372,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: zalando.org/v1
-kind: KopfPeering
+kind: ClusterKopfPeering
 metadata:
   name: mysql-operator
 ---
@@ -383,13 +385,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mysql-operator-sa
-  namespace: cno-system
+  namespace: mysql-operator
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-operator
-  namespace: cno-system
+  namespace: mysql-operator
   labels:
     version: "1.0"
     app.kubernetes.io/name: mysql-operator
