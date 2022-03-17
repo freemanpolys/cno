@@ -26,13 +26,13 @@ spec:
 
 apiVersion: v1
 kind: Secret
+metadata:
+  name: cno-api-db-secret
+  namespace: cno-system
 data:
   mysql-password: VnNhN1dCbThoaQ==
   mysql-root-password: UjhxTWZWTzU2UA==
-  labels:
-      app: mysql-database
-  name: cno-api-db-secret
-  namespace: cno-system
+
 
 ---
 
