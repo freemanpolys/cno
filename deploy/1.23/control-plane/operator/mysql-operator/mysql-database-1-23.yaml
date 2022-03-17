@@ -21,8 +21,15 @@ metadata:
   name: mysql-database
   namespace: cno-system
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-database
   serviceName: mysql-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-database
     spec:
       containers:
       - env:
