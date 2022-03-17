@@ -86,7 +86,7 @@ spec:
         - name: KAFKA_VERBOSE
           value: "false"
         - name: DB_HOST
-          value: "mysql-service.cno-system.svc.cluster.local"
+          value: "mysql-service"
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
