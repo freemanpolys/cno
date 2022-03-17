@@ -376,22 +376,28 @@ kind: ClusterKopfPeering
 metadata:
   name: mysql-operator
 ---
+apiVersion: zalando.org/v1
+kind: KopfPeering
+metadata:
+  namespace: cno-system
+  name: mysql-operator
+---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: mysql-operator
+  name: cno-system
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: mysql-operator-sa
-  namespace: mysql-operator
+  namespace: cno-system
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-operator
-  namespace: mysql-operator
+  namespace: cno-system
   labels:
     version: "1.0"
     app.kubernetes.io/name: mysql-operator
