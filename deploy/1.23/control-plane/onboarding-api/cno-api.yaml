@@ -86,7 +86,7 @@ spec:
         - name: KAFKA_VERBOSE
           value: "false"
         - name: DB_HOST
-          value: "mysql-service"
+          value: "10.244.2.17"
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
