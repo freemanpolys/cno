@@ -13,6 +13,8 @@ metadata:
   name: mysql-service
   namespace: cno-system
 spec:
+  selector:
+    app: mysql-database
   ports:
   - name: mysql
     port: 3306
