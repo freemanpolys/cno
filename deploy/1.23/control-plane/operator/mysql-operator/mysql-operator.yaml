@@ -370,12 +370,20 @@ roleRef:
   kind: ClusterRole
   name: mysql-operator
   apiGroup: rbac.authorization.k8s.io
----
+#---
 
+#apiVersion: zalando.org/v1
+#kind: ClusterKopfPeering
+#metadata:
+#  name: mysql-operator
+#---
+
+---
 apiVersion: zalando.org/v1
-kind: ClusterKopfPeering
+kind: KopfPeering
 metadata:
   name: mysql-operator
+  namespace: cno-system
 ---
 apiVersion: v1
 kind: Namespace
