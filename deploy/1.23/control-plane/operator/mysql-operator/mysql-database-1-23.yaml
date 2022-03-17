@@ -29,6 +29,7 @@ kind: Secret
 metadata:
   name: cno-api-db-secret
   namespace: cno-system
+type: Opaque
 data:
   mysql-password: VnNhN1dCbThoaQ==
   mysql-root-password: UjhxTWZWTzU2UA==
