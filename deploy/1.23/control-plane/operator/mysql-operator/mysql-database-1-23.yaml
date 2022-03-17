@@ -24,19 +24,6 @@ spec:
 
 ---
 
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cno-api-db-secret
-  namespace: cno-system
-type: Opaque
-data:
-  mysql-password: VnNhN1dCbThoaQ==
-  mysql-root-password: UjhxTWZWTzU2UA==
-
-
----
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
