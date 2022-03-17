@@ -330,7 +330,7 @@ rules:
     resources: ["*"]
     verbs: ["*"]
   - apiGroups: ["zalando.org"]
-    #resources: ["clusterkopfpeerings", "kopfpeerings"]
+    resources: ["clusterkopfpeerings", "kopfpeerings"]
     resources: ["*"]
     verbs: ["get", "patch", "list", "watch"]
 ---
