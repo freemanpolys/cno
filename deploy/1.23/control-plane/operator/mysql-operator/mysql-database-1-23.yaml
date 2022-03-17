@@ -4,7 +4,7 @@ metadata:
   labels:
     app: mysql-database
   name: mysql-sa
-  namespace: default
+  namespace: cno-system
 
 ---
 
