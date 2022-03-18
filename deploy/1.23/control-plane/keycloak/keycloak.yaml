@@ -30,9 +30,9 @@ spec:
             - cno-realm
         items:
         - name: keycloak
-          secrets: 
-          - keycloak
           mountPath: /etc/x509/https
+          secrets: 
+            - keycloak
         items:  
         - name: keycloak-certificate
           mountPath: /cno
