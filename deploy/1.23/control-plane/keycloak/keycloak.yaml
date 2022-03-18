@@ -29,7 +29,7 @@ spec:
           configMaps:
             - cno-realm
         items:
-        - name: keycloak
+        - name: keycloak-configmap
           mountPath: /etc/x509/https
           configMaps: 
             - keycloak-configmap
