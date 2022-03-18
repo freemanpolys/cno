@@ -31,8 +31,8 @@ spec:
         items:
         - name: keycloak
           mountPath: /etc/x509/https
-          secrets: 
-            - keycloak
+          configMaps: 
+            - keycloak-configmap
         items:  
         - name: keycloak-certificate
           mountPath: /cno
