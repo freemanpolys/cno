@@ -28,23 +28,10 @@ spec:
           mountPath: /cno
           configMaps:
             - cno-realm
-        items:
-        - name: keycloak-configmap
-          mountPath: /etc/x509/https  
-          configMaps: 
-            - keycloak-configmap
-        items:  
-        - name: keycloak-certificate
-          mountPath: /certificate
-          configMaps:
-            - keycloak-certificate
 
       env:
         - name: KEYCLOAK_IMPORT
           value: /cno/cno-realm.json
-      env:
-        - name: X509_CA_BUNDLE
-          value: "/cno/ca.crt /cno/server.crt"
 
 
 
