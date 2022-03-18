@@ -3858,8 +3858,6 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "keycloak-operator"
-            - name: RELATED_IMAGE_KEYCLOAK
-              value: "jboss/keycloak:16.1.1"
 
 ---
 
