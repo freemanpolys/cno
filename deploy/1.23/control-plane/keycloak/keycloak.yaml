@@ -28,16 +28,16 @@ spec:
           mountPath: /cno
           configMaps:
             - cno-realm
-        items:
-        - name: keycloak-configmap
-          mountPath: /cno
-          configMaps: 
-            - keycloak-configmap
         items:  
         - name: keycloak-certificate
           mountPath: /cno
           configMaps:
             - keycloak-certificate
+        items:
+        - name: keycloak-configmap
+          mountPath: /cno
+          configMaps: 
+            - keycloak-configmap
 
       env:
         - name: KEYCLOAK_IMPORT
