@@ -51,7 +51,7 @@ spec:
               key: mysql-root-password
               name: cno-api-db-secret
         - name: MYSQL_DATABASE
-          value: my_database
+          value: cno
         image: docker.io/bitnami/mysql:8.0.28-debian-10-r23
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -188,21 +188,3 @@ metadata:
   name: mysql-configmap
   namespace: cno-system
 
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: mysql-database
-  name: cno-api-mysql-master
-  namespace: cno-system
-spec:
-  clusterIP: None
-  ports:
-  - name: mysql
-    port: 3306
-    protocol: TCP
-    targetPort: mysql
- 

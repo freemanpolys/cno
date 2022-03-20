@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: keycloak
+  name: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - image: quay.io/keycloak/keycloak:11.0.0
+        name: keycloak
+        resources: {}
+        ports:
+        - containerPort: 8080
+    #    env:
+    #    - name: DB_VENDOR
+    #      value:  MYSQL
+    #    - name: DB_ADDR
+    #      value:  "mysql-service"
+    #    - name: DB_DATABASE 
+    #     value:  "my_database"
+    #    - name: DB_USERR 
+    #      value:  "root"
+    #    - name: DB_PASSWORD
+    #      value: "UjhxTWZWTzU2UA=="
+    #    - name: MYSQL_PORT_3306_TCP_PORT
+    #      value: "3306"
+    #    - name: KEYCLOAK_USER
+    #      value: "root"
+    #    - name: KEYCLOAK_PASSWORD
+    #      value: "root"
+    #    - name: JDBC_PARAMS
+    #      value: "useSSL=false"
+    #    args:
+    #   - -b=0.0.0.0
+    #    - -bmanagement=0.0.0.0
+    #    - --server-config=standalone-ha.xml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: keycloak
