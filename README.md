@@ -49,7 +49,6 @@ In one project, you can define your own environnements, e.g. Dev, Staging, Produ
 
 CNO brings here an interesting feature called **Multi-cluster namespaces** that allows you to create your environments or namespaces without taking consideration of the underlying cluster ( Edges, On premises or Public Cloud). best For example, you can create a Dev environment on AWS, a Staging environment on OpenShift and a Production environment on Kubernetes Vanilla located in your own datacenter.
 
-  
 
 ### **Teams or Organization tenants Onboarding**
 
